@@ -7,7 +7,16 @@ const withPWA = require('next-pwa')({
 });
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images : {
+    formats :['image/webp'],
+    remotePatterns : [
+      {
+        protocol : 'https',
+        hostname : 'wwwyguzvcriyafipdond.supabase.co',
+        pathname : '/storage/v1/**/public/photo/**'
+      }
+    ]
+  },
 };
 
 export default withPWA(nextConfig)  ;

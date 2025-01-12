@@ -18,6 +18,9 @@ const config = {
       },
     },
     extend: {
+      screens : {
+        "mobile" : "425px"
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
