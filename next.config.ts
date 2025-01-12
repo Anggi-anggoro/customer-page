@@ -6,6 +6,7 @@ const withPWA = require('next-pwa')({
   skipWaiting: true,
   disable: process.env.NODE_ENV === 'development',
   scope: "/app",
+  sw : '/public/sw.js',
   runtimeCaching: [
     {
       urlPattern: /^https:\/\/customer-w-anggi\.vercel\.app\//,
