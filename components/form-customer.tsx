@@ -152,7 +152,7 @@ const CustomerForm = (props : {customerData? : ListCustomer}) => {
 
     return (
         <div>
-            <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-y-7 text-foreground w-3/4 mx-auto items-center max-mobile:flex flex-col max-mobile:items-start max-mobile:gap-2 max-mobile:[&>*:nth-child(even)]:mb-4 max-mobile:[&>*:nth-child(odd)]:text-sm [&>*:nth-child(odd)]:font-semibold">
+            <form onSubmit={handleSubmit} className={`grid grid-cols-2 gap-y-7 text-foreground w-3/4 mx-auto items-center max-mobile:flex flex-col max-mobile:items-start max-mobile:gap-2 max-mobile:[&>*:nth-child(even)]:mb-4 max-mobile:[&>*:nth-child(odd)]:text-sm [&>*:nth-child(odd)]:font-semibold`}>
                 <label>Name</label>
                 <input value={customer.name}  onChange={(e) => handleChange(e.target.value, 'name')} className="border px-3 py-1 rounded-md w-full" type="text" placeholder="Name" />
                 <label>Email</label>
@@ -173,11 +173,6 @@ const CustomerForm = (props : {customerData? : ListCustomer}) => {
                     country == 'WNA' &&
                     <>
                         <label>Country</label>
-                        {/* <select value={props.customerData ? props.customerData.nationality : ''} required  onChange={(e) => handleChange(e.target.value, 'nationality')} className="border px-3 py-1 rounded-md w-full">
-                            <option disabled value="">- Select Country -</option>
-                            <option value='Jepang'>Jepang</option>
-                            <option>Korea</option>
-                        </select> */}
                         <SearchableDropdown
                             isRequired={true}
                             options={listCountry}
@@ -190,7 +185,7 @@ const CustomerForm = (props : {customerData? : ListCustomer}) => {
 
                 }
                 <label className="">Photo</label>
-                <input required ref={fileInputRef}  onChange={(e) => handleChange(e.target.files ? e.target.files[0] : null, 'photo')} accept="image/png/jpeg/jpg" className="border px-3 py-1 rounded-md w-full" type="file" />
+                <input required={props.customerData ? false : true} ref={fileInputRef}  onChange={(e) => handleChange(e.target.files ? e.target.files[0] : null, 'photo')} accept="image/png/jpeg/jpg" className="border px-3 py-1 rounded-md w-full" type="file" />
                 
                 <Image className={`col-start-2 max-mobile:self-center justify-self-center w-44 h-48 ${customer.photo_name ? '' : 'p-10'}`}  src={props.customerData?.photo_url ? props.customerData?.photo_url : (customer.photo ? URL.createObjectURL(customer.photo) : placholderImage)} alt="Customer Photo" width={100} height={100} />                
                 <Button className="col-span-2 self-center max-mobile:w-3/4">Submit</Button>

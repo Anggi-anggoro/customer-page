@@ -5,10 +5,12 @@ import Image from 'next/image';
 import placholderImg from '@/components/assets/person-placeholder.png'
 import CustomerForm from '@/components/form-customer';
 import { useRouter } from 'next/navigation';
+import { useTheme } from 'next-themes';
 
 
 
 const CustomerListPage = () => {
+    const { theme } = useTheme()
     const [customers, setCustomers] = useState<ListCustomer[]>([]);
     const [filterCustomer, setFilterCustomer] = useState<ListCustomer[]>(customers);
     const [filter,setFilter] =useState<FilterCustomer>({
@@ -165,7 +167,7 @@ const CustomerListPage = () => {
                 </div> */}
             </div>
             <div className={`absolute top-0 left-0 right-0 bottom-0 z-10 bg-black bg-opacity-80 w-full xl:px-24 ${hideForm ? 'hidden' : ''}`}>
-                <div className='py-8 rounded-lg bg-white xl:w-1/2 mx-auto mt-7 relative pt-16'>
+                <div className={`py-8 rounded-lg xl:w-1/2 mx-auto mt-7 relative pt-16  ${theme == 'dark' ? 'bg-black' : 'bg-white'}`}>
                     <button onClick={()=>setHideForm(true)} className='absolute right-3 top-3'>
                         <svg className='w-10 fill-red-700 max-md:w-6' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z"/></svg>    
                     </button>

@@ -13,7 +13,7 @@ const CustomerDetailPage = async({ params }: {  params: Promise<{ slug: number }
     const {data : img} =await supabase.storage.from('photo').getPublicUrl(customer? customer[0].photo_name : '');
   
     return (
-        <div className='p-10'>
+        <div className='p-10 h-[80vh]'>
             {customer?.map((customer: CustomerData,index : number) => 
                 <div key={index}>
                     <p className='text-center text-3xl font-semibold mb-7'>{customer.name}</p>

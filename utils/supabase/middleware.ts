@@ -35,18 +35,15 @@ export const updateSession = async (request: NextRequest) => {
       },
     );
 
-    // This will refresh session if expired - required for Server Components
-    // https://supabase.com/docs/guides/auth/server-side/nextjs
     const user = await supabase.auth.getUser();
+    
+    if (request.nextUrl.pathname.startsWith("/customer") && user.error) {
+      return NextResponse.redirect(new URL("/", request.url));
+    }
 
-    // protected routes
-    // if (request.nextUrl.pathname.startsWith("/customer") && user.error) {
-    //   return NextResponse.redirect(new URL("/", request.url));
-    // }
-
-    // if (request.nextUrl.pathname === "/" && !user.error) {
-    //   return NextResponse.redirect(new URL("/customer", request.url));
-    // }
+    if (request.nextUrl.pathname === "/" && !user.error) {
+      return NextResponse.redirect(new URL("/customer", request.url));
+    }
 
     return response;
   } catch (e) {
