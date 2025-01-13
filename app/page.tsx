@@ -8,17 +8,6 @@ import { useEffect } from "react";
 
 export default async function Home(props: { searchParams: Promise<Message> }) {
   const searchParams = await props.searchParams;
-  useEffect(() => {
-    navigator.serviceWorker
-      .register("/sw.js")
-      .then((registration) =>
-        console.log(
-          "Service Worker registration successful with scope: ",
-          registration.scope,
-        ),
-      )
-      .catch((err) => console.log("Service Worker registration failed: ", err));
-  }, []);
   return (
     <form className="flex-1 flex flex-col min-w-64 pt-24">
       <h1 className="text-2xl font-medium">Sign in</h1>
